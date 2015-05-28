@@ -123,6 +123,23 @@ namespace Accelerometer_Rangefinder
                         AccelerometerText.Text = "X: " + reading.AccelerationX
                             + "\nY: " + reading.AccelerationY
                             + "\nZ: " + reading.AccelerationZ;
+
+                        double angle = Math.Acos(Math.Max(Math.Min(reading.AccelerationZ, 1), -1));
+                        AngleText.Text = "Angle: " + angle;
+
+                        double deviceHeight;
+                        double.TryParse(DeviceHeightText.Text, out deviceHeight);
+                        double distance = Math.Abs(Math.Tan(angle) * deviceHeight);
+
+                        // deviceHeight and hence distance will be 0 if parsing fails, 0 is an invalid value anyways
+                        if (distance == 0)
+                        {
+                            DistText.Text = "Please enter a valid device height";
+                        }
+                        else
+                        {
+                            DistText.Text = "Distance: " + distance;
+                        }
                     },
                     null);
             }

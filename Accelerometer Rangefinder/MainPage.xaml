@@ -9,7 +9,11 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <CaptureElement x:Name="VideoStream" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-        <TextBlock x:Name="AccelerometerText"  HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" FontSize="16"/>
+        <TextBlock x:Name="AccelerometerText" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Accel" VerticalAlignment="Top" FontSize="16"/>
+        <TextBlock x:Name="AngleText" HorizontalAlignment="Right" Margin="0,10,10,0" TextWrapping="Wrap" Text="Angle:" VerticalAlignment="Top" FontSize="16"/>
+        <TextBlock x:Name="DistText" HorizontalAlignment="Right" Margin="0,71,10,0" TextWrapping="Wrap" Text="Distance: " VerticalAlignment="Top" FontSize="16"/>
+        <TextBox x:Name="DeviceHeightText" HorizontalAlignment="Right" Margin="0,34,10,0" TextWrapping="Wrap" Text="1.5" VerticalAlignment="Top"/>
+        <TextBlock x:Name="EnterHeightLabel" HorizontalAlignment="Right" Margin="0,47,79,0" TextWrapping="Wrap" Text="Height of device: " VerticalAlignment="Top" FontSize="16"/>
 
     </Grid>
 </Page>
