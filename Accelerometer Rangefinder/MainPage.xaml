@@ -14,6 +14,8 @@
         <TextBlock x:Name="DistText" HorizontalAlignment="Right" Margin="0,71,10,0" TextWrapping="Wrap" Text="Distance: " VerticalAlignment="Top" FontSize="16"/>
         <TextBox x:Name="DeviceHeightText" HorizontalAlignment="Right" Margin="0,34,10,0" TextWrapping="Wrap" Text="1.5" VerticalAlignment="Top"/>
         <TextBlock x:Name="EnterHeightLabel" HorizontalAlignment="Right" Margin="0,47,79,0" TextWrapping="Wrap" Text="Height of device: " VerticalAlignment="Top" FontSize="16"/>
+        <TextBlock x:Name="ObjHeightText" HorizontalAlignment="Right" Margin="0,95,10,0" TextWrapping="Wrap" Text="Height: " VerticalAlignment="Top" FontSize="16"/>
+        <Button x:Name="DistSetButton" Content="Set Distance" HorizontalAlignment="Right" Margin="1165,116,0,0" VerticalAlignment="Top" Width="201" Click="DistSetButton_Click"/>
 
     </Grid>
 </Page>

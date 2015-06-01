@@ -35,6 +35,16 @@ namespace Accelerometer_Rangefinder
         private readonly SynchronizationContext syncContext;
 
         /// <summary>
+        /// A boolean value indicating whether the distance to the device is set
+        /// </summary>
+        private bool isDistanceSet = false;
+
+        /// <summary>
+        /// The distance to the base of the object
+        /// </summary>
+        private double distance = 0;
+
+        /// <summary>
         /// Timer which repeats and controls accelerator sampling
         /// </summary>
         private System.Threading.Timer accelTimer;
@@ -129,19 +139,59 @@ namespace Accelerometer_Rangefinder
 
                         double deviceHeight;
                         double.TryParse(DeviceHeightText.Text, out deviceHeight);
-                        double distance = Math.Abs(Math.Tan(angle) * deviceHeight);
 
-                        // deviceHeight and hence distance will be 0 if parsing fails, 0 is an invalid value anyways
-                        if (distance == 0)
+                        if (!this.isDistanceSet)
                         {
-                            DistText.Text = "Please enter a valid device height";
+                            // Calculate distance based on device height and angle
+                            this.distance = Math.Abs(Math.Tan(angle) * deviceHeight);
+
+                            // deviceHeight and hence distance will be 0 if parsing fails, 0 is an invalid value anyways
+                            if (this.distance == 0)
+                            {
+                                DistText.Text = "Please enter a valid device height";
+                            }
+                            else
+                            {
+                                DistText.Text = "Distance: " + this.distance;
+                            }
                         }
                         else
                         {
-                            DistText.Text = "Distance: " + distance;
+                            //Calculate height based on recorded distance
+                            double height = this.distance / Math.Tan(angle);
+                            if (height == 0)
+                            {
+                                ObjHeightText.Text = "Please set a distance";
+                            }
+                            else
+                            {
+                                ObjHeightText.Text = "Height: " + (height + deviceHeight);
+                            }
                         }
                     },
                     null);
+            }
+        }
+
+        /// <summary>
+        /// Changes the distance/height mode when the button is clicked.
+        /// </summary>
+        /// <param name="sender">This parameter is not used.</param>
+        /// <param name="e">This parameter is not used.</param>
+        private void DistSetButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.isDistanceSet = !this.isDistanceSet;
+
+            if (this.isDistanceSet)
+            {
+                DistSetButton.Content = "Unset Distance";
+                DeviceHeightText.IsReadOnly = true;
+            }
+            else
+            {
+                DistSetButton.Content = "Set Distance";
+                DeviceHeightText.IsReadOnly = false;
+                ObjHeightText.Text = "Height:";
             }
         }
     }
